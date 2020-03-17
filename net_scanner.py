@@ -3,15 +3,17 @@
 import scapy.all as scapy
 import optparse
 
-parser = optparse.OptionParser()
-parser.add_option("-p","--iprange",dest="ip",help="ip range")
 
-(options, arguments) = parser.parse_args()
+def get_arguments():
+    parser = optparse.OptionParser()
+    parser.add_option("-p","--iprange",dest="ip",help="ip range")
 
-if not options.ip:
-   parser.error("Please specify an ip range to scan")
-else:
-   ipRange = options.ip
+    (options, arguments) = parser.parse_args()
+
+   if not options.ip:
+      parser.error("Please specify an ip range to scan")
+   else:
+      return options.ip
 
 def scan(ip):
     arp_request = scapy.ARP(pdst=ip)
@@ -30,5 +32,6 @@ def print_result(results_list):
     for client in results_list:
         print(client["ip"] + "\t\t" + client["mac"])
 
+ipRange = get_arguments()
 scan_result = scan(ipRange)
 print_result(scan_result)

@@ -27,7 +27,7 @@
 
 <p>The answered_list have more two elements, packet-sent, and answer, the packet-sent contains the ip and the MAC of the host that sent the packet, and the answer have the mac and the ip of the host that answered the ARP request </p>
 
-<img src=images/image.png>
+<img src=image.png>
 
 <p>The comma separates the information about the two elements(pack-sent, answer to ARP request) from the answered_list</p>
 

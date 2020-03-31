@@ -18,10 +18,12 @@
 <p>Although the goal of this repository is show how to do this deeply, so instead of using just the function "arping()" we will use the classes ARP and Ether from the module scapy to do the same thing. </p>
 <p>so with the code below we firstly are gonna use scapy to create an ARP packet object and set the variable "pdst=ip", it's the ip range that i want to verify the hosts, (this ip is the ip that came like argument when the function is called). Then in the variable broadcast we use scapy.Ether with dst="ff:ff:ff:ff:ff:ff" to set the destination of this packet,in this case all hosts on the network, lastly but not least we use "scapy.srp()" to send the ARP packet and receive the response, and the variable answered_list to receive the response from the hosts</p>
 
-<p>arp_request = scapy.ARP(pdst=ip)</p>
-<p>broadcast = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")</p>
-<p>arp_request_broadcast = broadcast/arp_request</p>
-<p>answered_list = scapy.srp(arp_request_broadcast, timeout=1, verbose=False)[0]</p>
+```python
+arp_request = scapy.ARP(pdst=ip)
+broadcast = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")
+arp_request_broadcast = broadcast/arp_request
+answered_list = scapy.srp(arp_request_broadcast, timeout=1, verbose=False)[0]
+```
 
 <p>It's used "[0]" like a list because the function "srp()" returns two list, one of answered responses and other of unanswered responses, and this case we need just the answered responses.</p>
 
